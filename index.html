@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Attarillu Family Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --S: #FF6B1A;
+      --S2: #FFB347;
+      --S3: #FFF8F0;
+      --BR: #5C2D0A;
+      --BR2: #8B3A0F;
+      --G: #2E7D32;
+      --G2: #43A047;
+      --R: #C62828;
+      --BL: #1565C0;
+      --PU: #6A1B9A;
+      --AU: #F59E0B;
+      --WA: #25D366;
+      --WA2: #128C7E;
+      --DARK: #1A0A00;
+      --GREY: #6B7280;
+      --BG: #FFF4EC;
+      --BOR: #F0D8C0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--BG);
+      color: var(--DARK);
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .page.show {
+      display: block;
+    }
+
+    /* ── HEADER ── */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 800;
+      background: linear-gradient(135deg, var(--BR), var(--BR2) 55%, var(--S) 100%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .28);
+    }
+
+    .hdr-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 15px;
+    }
+
+    .logo {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.45rem;
+      color: var(--S2);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
+      line-height: 1.1;
+    }
+
+    .logo small {
+      display: block;
+      font-size: .52rem;
+      color: #ffe0b2;
+      letter-spacing: 2px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+    }
+
+    .hdr-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, .15);
+      border: 1.5px solid rgba(255, 255, 255, .3);
+      color: #fff;
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-size: .67rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .chip.green {
+      background: var(--G);
+      border-color: var(--G2);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: linear-gradient(90deg, #BF360C, var(--S), #BF360C);
+      background-size: 300%;
+      animation: mshine 4s linear infinite;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      padding: 7px 0;
+    }
+
+    @keyframes mshine {
+      0% {
+        background-position: 0%
+      }
+
+      100% {
+        background-position: 300%
+      }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #4A1A00 0%, var(--BR2) 40%, var(--S) 100%);
+      padding: 28px 16px 46px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(255, 179, 71, .15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-ico {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 8px;
+      animation: bob 3s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-9px)
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Yatra One', cursive;
+      font-size: 2.1rem;
+      color: var(--S2);
+      text-shadow: 3px 3px 14px rgba(0, 0, 0, .5);
+      margin-bottom: 3px;
+    }
+
+    .hero .tagline {
+      color: #ffe0b2;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .hero .location {
+      color: #ffcc80;
+      font-size: .72rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-pill {
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .22);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: 28px;
+      font-size: .65rem;
+      font-weight: 700;
+    }
+
+    /* ── DELIVERY STRIP ── */
+    .del-strip {
+      background: linear-gradient(90deg, var(--G), var(--G2));
+      color: #fff;
+      padding: 11px 15px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 800;
+      font-size: .83rem;
+    }
+
+    .del-strip .ico {
+      animation: slidex 2s ease-in-out infinite;
+      display: inline-block;
+      font-size: 1.2rem;
+    }
+
+    @keyframes slidex {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      50% {
+        transform: translateX(7px)
+      }
+    }
+
+    .order-btn {
+      margin-left: auto;
+      background: #fff;
+      color: var(--G);
+      border: none;
+      padding: 7px 13px;
+      border-radius: 18px;
+      font-weight: 900;
+      font-size: .68rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION HEAD ── */
+    .sec-head {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.25rem;
+      color: var(--BR);
+      padding: 20px 15px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec-head::after {
+      content: '';
+      flex: 1;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--S), transparent);
+      border-radius: 2px;
+    }
+
+    /* ── MENU TABS ── */
+    .menu-tabs {
+      display: flex;
+      padding: 0 15px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 0;
+    }
+
+    .menu-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mtab {
+      flex-shrink: 0;
+      flex: 1;
+      min-width: 70px;
+      padding: 9px 5px;
+      text-align: center;
+      border: 2px solid var(--BOR);
+      background: #fff;
+      color: var(--BR);
+      font-size: .62rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .22s;
+    }
+
+    .mtab:first-child {
+      border-radius: 11px 0 0 11px;
+    }
+
+    .mtab:last-child {
+      border-radius: 0 11px 11px 0;
+    }
+
+    .mtab .me {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
+
+    .mtab.on {
+      background: linear-gradient(135deg, var(--S), var(--S2));
+      color: #fff;
+      border-color: var(--S);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(255, 107, 26, .3);
+    }
+
+    /* ── MENU PANEL ── */
+    .mpanel {
+      display: none;
+      padding: 12px 15px;
+    }
+
+    .mpanel.on {
+      display: block;
+    }
+
+    .mgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ── MENU CARD ── */
+    .mc {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 3px 12px rgba(255, 107, 26, .09);
+      transition: transform .2s;
+    }
+
+    .mc:active {
+      transform: scale(.97);
+    }
+
+    .mc-img {
+      width: 100%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      position: relative;
+    }
+
+    .mc-body {
+      padding: 8px 9px 30px;
+    }
+
+    .mc-name {
+      font-size: .76rem;
+      font-weight: 800;
+      color: var(--DARK);
+      line-height: 1.3;
+    }
+
+    .mc-price {
+      font-size: .74rem;
+      color: var(--S);
+      font-weight: 900;
+      margin-top: 3px;
+    }
+
+    .mc-price .sub {
+      font-size: .6rem;
+      color: var(--GREY);
+      font-weight: 600;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .mc-desc {
+      font-size: .6rem;
+      color: var(--GREY);
+      margin-top: 2px;
+    }
+
+    .mc-badge {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      background: var(--R);
+      color: #fff;
+      font-size: .5rem;
+      font-weight: 900;
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+
+    .mc-na {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      font-weight: 900;
+      color: var(--R);
+      border-radius: 14px;
+    }
+
+    .add-btn {
+      position: absolute;
+      bottom: 7px;
+      right: 7px;
+      width: 25px;
+      height: 25px;
+      background: var(--S);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(255, 107, 26, .4);
+      transition: transform .18s;
+    }
+
+    .add-btn:active {
+      transform: scale(1.25);
+    }
+
+    /* FULL WIDTH CARD */
+    .mc-full {
+      grid-column: 1/-1;
+    }
+
+    /* ── BOOKING ── */
+    .booking-box {
+      margin: 0 15px 22px;
+      background: linear-gradient(135deg, #fff8f0, #fff3e0);
+      border-radius: 18px;
+      padding: 18px 15px;
+      border: 2px solid #FFD0A0;
+      box-shadow: 0 4px 16px rgba(255, 107, 26, .1);
+    }
+
+    .booking-box h3 {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.05rem;
+      color: var(--BR);
+      margin-bottom: 13px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tog-row {
+      display: flex;
+      background: #f0e8e0;
+      border-radius: 11px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 12px;
+    }
+
+    .tog {
+      flex: 1;
+      padding: 8px 4px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: .65rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--BR);
+      transition: all .2s;
+    }
+
+    .tog.on {
+      background: #fff;
+      color: var(--S);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+
+    .ff {
+      margin-bottom: 11px;
+    }
+
+    .ff label {
+      display: block;
+      font-size: .67rem;
+      font-weight: 800;
+      color: var(--BR);
+      margin-bottom: 3px;
+    }
+
+    .ff input,
+    .ff select,
+    .ff textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid var(--BOR);
+      border-radius: 11px;
+      font-size: .82rem;
+      font-weight: 600;
+      background: #fff;
+      outline: none;
+      transition: border-color .2s;
+      color: var(--DARK);
+    }
+
+    .ff input:focus,
+    .ff select:focus,
+    .ff textarea:focus {
+      border-color: var(--S);
+    }
+
+    .ff textarea {
+      resize: none;
+      height: 64px;
+    }
+
+    .f2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ── CART SUMMARY ── */
+    .cart-box {
+      background: #fff;
+      border: 2px solid var(--BOR);
+      border-radius: 12px;
+      padding: 11px 12px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      font-size: .74rem;
+      color: var(--BR);
+      font-weight: 600;
+    }
+
+    .cart-total-row {
+      border-top: 2px dashed var(--BOR);
+      margin-top: 6px;
+      padding-top: 7px;
+      font-weight: 900;
+      color: var(--DARK);
+      font-size: .84rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── PAYMENT ── */
+    .pay-lbl {
+      font-size: .68rem;
+      font-weight: 800;
+      color: var(--BR);
+      margin-bottom: 7px;
+    }
+
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pay-opt {
+      border: 2px solid var(--BOR);
+      border-radius: 11px;
+      padding: 9px 6px;
+      text-align: center;
+      cursor: pointer;
+      background: #fff;
+      transition: all .2s;
+    }
+
+    .pay-opt.on {
+      border-color: var(--S);
+      background: #fff8f2;
+    }
+
+    .pay-opt .pi {
+      font-size: 1.35rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .pay-opt .pl {
+      font-size: .62rem;
+      font-weight: 800;
+      color: var(--BR);
+    }
+
+    .upi-box {
+      background: linear-gradient(135deg, #F3E5FF, #EDE7F6);
+      border: 2px solid #CE93D8;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 11px;
+      text-align: center;
+      display: none;
+    }
+
+    .upi-id {
+      font-size: .95rem;
+      font-weight: 900;
+      color: var(--PU);
+      letter-spacing: 1px;
+      margin: 6px 0;
+    }
+
+    .upi-apps {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      margin-top: 6px;
+    }
+
+    .ua {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: .55rem;
+      color: #666;
+      font-weight: 700;
+    }
+
+    .ua-ico {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .copy-btn {
+      background: var(--PU);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 5px 13px;
+      font-size: .68rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--S), #e65100);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: .9rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(255, 107, 26, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform .2s;
+    }
+
+    .btn-submit:active {
+      transform: scale(.98);
+    }
+
+    .btn-wa {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--WA), var(--WA2));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: .85rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-wa:active {
+      transform: scale(.98);
+    }
+
+    /* ── MAP ── */
+    .map-wrap {
+      margin: 0 15px 22px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+      border: 2px solid var(--BOR);
+    }
+
+    .map-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .map-btn {
+      padding: 11px;
+      text-align: center;
+      font-size: .72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .map-btn.blue {
+      background: var(--BL);
+      color: #fff;
+    }
+
+    .map-btn.grn {
+      background: var(--WA);
+      color: #fff;
+    }
+
+    .map-addr {
+      background: #fff;
+      padding: 11px 13px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .74rem;
+      font-weight: 700;
+      color: var(--BR);
+    }
+
+    /* ── INFO BOX ── */
+    .info-box {
+      margin: 0 15px 28px;
+      background: linear-gradient(135deg, var(--BR), #3e1a04);
+      border-radius: 18px;
+      padding: 18px 15px;
+      color: #fff;
+    }
+
+    .info-box h3 {
+      font-family: 'Yatra One', cursive;
+      color: var(--S2);
+      font-size: 1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hrs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+
+    .hc {
+      background: rgba(255, 255, 255, .1);
+      border-radius: 9px;
+      padding: 8px 5px;
+      text-align: center;
+    }
+
+    .hc .he {
+      font-size: .95rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .hc .hn {
+      font-size: .56rem;
+      color: var(--S2);
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .hc .ht {
+      font-size: .54rem;
+      color: #ddd;
+      margin-top: 1px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-bottom: 9px;
+      font-size: .74rem;
+      line-height: 1.5;
+    }
+
+    /* ── CART FAB ── */
+    .cart-fab {
+      position: fixed;
+      bottom: 22px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--S), #e65100);
+      color: #fff;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      box-shadow: 0 5px 20px rgba(255, 107, 26, .5);
+      cursor: pointer;
+      z-index: 700;
+      border: 3px solid rgba(255, 255, 255, .3);
+    }
+
+    .ccount {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: var(--G);
+      color: #fff;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: .58rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--DARK);
+      color: #555;
+      text-align: center;
+      padding: 16px;
+      font-size: .67rem;
+      border-top: 3px solid var(--S);
+    }
+
+    footer .fn {
+      color: var(--S2);
+      font-family: 'Yatra One', cursive;
+      font-size: .9rem;
+      margin-bottom: 3px;
+    }
+
+    /* ── LOGIN NOTICE ── */
+    .login-notice {
+      background: #FFF3CD;
+      border: 2px solid var(--S2);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: .7rem;
+      color: var(--BR);
+      text-align: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* ═══ ADMIN ═══ */
+    #admin-page {
+      background: #f0e8e0;
+    }
+
+    .adm-hdr {
+      background: linear-gradient(135deg, var(--BR), var(--BR2), var(--S));
+      padding: 11px 13px;
+      position: sticky;
+      top: 0;
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .3);
+    }
+
+    .adm-logo {
+      font-family: 'Yatra One', cursive;
+      color: var(--S2);
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .adm-logo small {
+      font-size: .52rem;
+      display: block;
+      color: #ffe0b2;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .adm-btns {
+      display: flex;
+      gap: 5px;
+    }
+
+    .adm-chip {
+      background: rgba(255, 255, 255, .15);
+      border: 1.5px solid rgba(255, 255, 255, .3);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 17px;
+      font-size: .63rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #fff;
+      border-bottom: 3px solid var(--S2);
+    }
+
+    .sbox {
+      padding: 11px 5px;
+      text-align: center;
+      border-right: 1px solid #f0e0d0;
+    }
+
+    .sbox:last-child {
+      border-right: none;
+    }
+
+    .snum {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--S);
+      line-height: 1;
+    }
+
+    .slbl {
+      font-size: .5rem;
+      color: #aaa;
+      margin-top: 2px;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+
+    .adm-nav {
+      display: flex;
+      background: #fff;
+      border-bottom: 3px solid #f0d8c0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .adm-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .an {
+      flex: 1;
+      min-width: 62px;
+      padding: 9px 4px;
+      text-align: center;
+      font-size: .56rem;
+      font-weight: 800;
+      color: #bbb;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all .2s;
+    }
+
+    .an.on {
+      color: var(--S);
+      border-bottom-color: var(--S);
+    }
+
+    .an .ni {
+      display: block;
+      font-size: .95rem;
+      margin-bottom: 2px;
+    }
+
+    .asec {
+      display: none;
+      padding: 12px 13px 90px;
+    }
+
+    .asec.on {
+      display: block;
+    }
+
+    .frow {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 10px;
+    }
+
+    .frow::-webkit-scrollbar {
+      display: none;
+    }
+
+    .fchip {
+      flex-shrink: 0;
+      padding: 5px 11px;
+      border-radius: 16px;
+      border: 2px solid var(--BOR);
+      background: #fff;
+      font-size: .63rem;
+      font-weight: 800;
+      color: var(--BR);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .fchip.on {
+      background: var(--S);
+      color: #fff;
+      border-color: var(--S);
+    }
+
+    /* ORDER CARDS */
+    .ocard {
+      background: #fff;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      border-left: 5px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .ocard.new {
+      border-left-color: var(--S);
+    }
+
+    .ocard.preparing {
+      border-left-color: var(--AU);
+    }
+
+    .ocard.ready {
+      border-left-color: var(--G);
+    }
+
+    .ocard.out-for-delivery {
+      border-left-color: var(--BL);
+    }
+
+    .ocard.delivered {
+      border-left-color: #ccc;
+    }
+
+    .ocard.cancelled {
+      border-left-color: var(--R);
+      opacity: .65;
+    }
+
+    .ocard.unbilled {
+      border-left-color: var(--PU);
+      border-left-width: 6px;
+    }
+
+    .oc-top {
+      padding: 10px 12px 7px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .oc-id {
+      font-size: .56rem;
+      color: #bbb;
+      font-weight: 700;
+    }
+
+    .oc-name {
+      font-size: .88rem;
+      font-weight: 900;
+      color: var(--DARK);
+      margin-top: 1px;
+    }
+
+    .oc-ph {
+      font-size: .68rem;
+      color: var(--GREY);
+      margin-top: 1px;
+    }
+
+    .oc-r {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .sbadge {
+      padding: 3px 8px;
+      border-radius: 14px;
+      font-size: .54rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+
+    .sb-new {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    .sb-preparing {
+      background: #FFFDE7;
+      color: #F57F17;
+    }
+
+    .sb-ready {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .sb-out-for-delivery {
+      background: #E3F2FD;
+      color: #1565C0;
+    }
+
+    .sb-delivered {
+      background: #F5F5F5;
+      color: #757575;
+    }
+
+    .sb-cancelled {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .sb-unbilled {
+      background: #F3E5FF;
+      color: #6A1B9A;
+    }
+
+    .oc-amt {
+      font-size: .72rem;
+      font-weight: 900;
+      color: var(--S);
+    }
+
+    .oc-items {
+      margin: 0 12px 7px;
+      background: #FFF8F0;
+      border-radius: 9px;
+      padding: 7px 10px;
+      font-size: .68rem;
+      color: var(--BR);
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .oc-meta {
+      padding: 0 12px 8px;
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .mtag {
+      font-size: .58rem;
+      color: var(--GREY);
+      background: #f5ede4;
+      padding: 3px 7px;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+
+    .oc-acts {
+      border-top: 1px solid #f0e8e0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .ab {
+      flex: 1;
+      padding: 9px 3px;
+      border: none;
+      background: #fff;
+      font-size: .6rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      color: var(--BR);
+      transition: background .15s;
+    }
+
+    .ab:not(:last-child) {
+      border-right: 1px solid #f0e8e0;
+    }
+
+    .ab:active {
+      background: #fff3e0;
+    }
+
+    .ab .ai {
+      font-size: .88rem;
+    }
+
+    .ab.green {
+      color: var(--G);
+    }
+
+    .ab.blue {
+      color: var(--BL);
+    }
+
+    .ab.red {
+      color: var(--R);
+    }
+
+    .ab.purple {
+      color: var(--PU);
+    }
+
+    .ab.gold {
+      color: var(--AU);
+    }
+
+    /* MENU MANAGER */
+    .item-card {
+      background: #fff;
+      border-radius: 13px;
+      margin-bottom: 9px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .item-hdr {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-bottom: 1px solid #f5ede4;
+    }
+
+    .item-ico {
+      font-size: 1.5rem;
+      width: 36px;
+      text-align: center;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-size: .82rem;
+      font-weight: 900;
+      color: var(--DARK);
+    }
+
+    .item-cat {
+      font-size: .58rem;
+      color: var(--GREY);
+      margin-top: 1px;
+      font-weight: 700;
+    }
+
+    .item-price-tag {
+      font-size: .8rem;
+      font-weight: 900;
+      color: var(--S);
+    }
+
+    .item-status {
+      padding: 3px 9px;
+      border-radius: 13px;
+      font-size: .56rem;
+      font-weight: 900;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+
+    .item-status.avail {
+      background: #E8F5E9;
+      color: var(--G);
+    }
+
+    .item-status.unavail {
+      background: #FFEBEE;
+      color: var(--R);
+    }
+
+    .item-body {
+      padding: 10px 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .price-inp {
+      flex: 1;
+      padding: 9px 10px;
+      border: 2px solid var(--BOR);
+      border-radius: 9px;
+      font-size: .85rem;
+      font-weight: 900;
+      color: var(--BR);
+      outline: none;
+    }
+
+    .price-inp:focus {
+      border-color: var(--S);
+    }
+
+    .save-btn {
+      padding: 9px 12px;
+      background: var(--S);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-size: .67rem;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .del-btn {
+      padding: 9px 10px;
+      background: #FFEBEE;
+      color: var(--R);
+      border: none;
+      border-radius: 9px;
+      font-size: .67rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .price-change {
+      font-size: .6rem;
+      margin-top: 3px;
+    }
+
+    .price-up {
+      color: var(--R);
+      font-weight: 900;
+    }
+
+    .price-dn {
+      color: var(--G);
+      font-weight: 900;
+    }
+
+    /* ADD ITEM */
+    .add-item-form {
+      background: #fff;
+      border-radius: 13px;
+      padding: 13px;
+      margin-bottom: 13px;
+      border-top: 3px solid var(--S);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .add-item-form h4 {
+      font-size: .87rem;
+      font-weight: 900;
+      color: var(--BR);
+      margin-bottom: 11px;
+    }
+
+    .mf {
+      margin-bottom: 10px;
+    }
+
+    .mf label {
+      display: block;
+      font-size: .65rem;
+      font-weight: 800;
+      color: var(--BR);
+      margin-bottom: 3px;
+    }
+
+    .mf input,
+    .mf select,
+    .mf textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 2px solid var(--BOR);
+      border-radius: 9px;
+      font-size: .8rem;
+      font-weight: 600;
+      outline: none;
+      background: #fff;
+      color: var(--DARK);
+    }
+
+    .mf input:focus,
+    .mf select:focus {
+      border-color: var(--S);
+    }
+
+    .mf textarea {
+      resize: none;
+      height: 58px;
+    }
+
+    .m2c {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    /* OFFERS */
+    .offer-mgr {
+      background: #fff;
+      border-radius: 13px;
+      margin-bottom: 9px;
+      padding: 13px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .offer-mgr h4 {
+      font-size: .8rem;
+      font-weight: 900;
+      color: var(--BR);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .of {
+      margin-bottom: 9px;
+    }
+
+    .of label {
+      display: block;
+      font-size: .62rem;
+      font-weight: 800;
+      color: #888;
+      margin-bottom: 3px;
+    }
+
+    .of input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 2px solid var(--BOR);
+      border-radius: 8px;
+      font-size: .78rem;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .of input:focus {
+      border-color: var(--S);
+    }
+
+    .sw-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .sw {
+      width: 40px;
+      height: 21px;
+      background: #ddd;
+      border-radius: 11px;
+      position: relative;
+      cursor: pointer;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+
+    .sw.on {
+      background: var(--G);
+    }
+
+    .sw::after {
+      content: '';
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left .2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    }
+
+    .sw.on::after {
+      left: 21px;
+    }
+
+    .sw-lbl {
+      font-size: .7rem;
+      font-weight: 800;
+      color: var(--BR);
+    }
+
+    /* REVENUE */
+    .rev-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 12px;
+    }
+
+    .rcard {
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .rcard .ri {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .rcard .rn {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--S);
+    }
+
+    .rcard .rl {
+      font-size: .56rem;
+      color: var(--GREY);
+      margin-top: 1px;
+      font-weight: 700;
+    }
+
+    /* CUSTOMERS */
+    .ccard {
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    }
+
+    .cav {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--S), var(--S2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+
+    .cname {
+      font-size: .8rem;
+      font-weight: 900;
+      color: var(--DARK);
+    }
+
+    .csub {
+      font-size: .62rem;
+      color: var(--GREY);
+      margin-top: 1px;
+      font-weight: 600;
+    }
+
+    .cstat {
+      margin-left: auto;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .cnum {
+      font-size: .85rem;
+      font-weight: 900;
+      color: var(--S);
+    }
+
+    .cnlbl {
+      font-size: .54rem;
+      color: var(--GREY);
+    }
+
+    /* MODAL / OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      z-index: 1500;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 22px 22px 0 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 21px 16px 36px;
+      max-height: 92vh;
+      overflow-y: auto;
+      animation: sup .3s ease;
+    }
+
+    @keyframes sup {
+      from {
+        transform: translateY(100%)
+      }
+
+      to {
+        transform: translateY(0)
+      }
+    }
+
+    .mtitle {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.05rem;
+      color: var(--BR);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .mclose {
+      margin-left: auto;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #bbb;
+    }
+
+    .auth-tabs {
+      display: flex;
+      background: #f5f0ea;
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .atab {
+      flex: 1;
+      padding: 8px;
+      text-align: center;
+      border-radius: 7px;
+      font-size: .73rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--BR);
+      border: none;
+      background: transparent;
+      transition: all .2s;
+    }
+
+    .atab.on {
+      background: #fff;
+      color: var(--S);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+
+    .apanel {
+      display: none;
+    }
+
+    .apanel.on {
+      display: block;
+    }
+
+    .aerr {
+      color: var(--R);
+      font-size: .68rem;
+      margin-top: 5px;
+      text-align: center;
+      min-height: 15px;
+      font-weight: 700;
+    }
+
+    .mprimary {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--S), #e65100);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-size: .88rem;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    /* UNBILLED NOTE */
+    .unb-note {
+      background: linear-gradient(135deg, #F3E5FF, #EDE7F6);
+      border: 2px solid #CE93D8;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: .72rem;
+      color: var(--PU);
+      font-weight: 700;
+    }
+
+    .unb-note b {
+      display: block;
+      font-size: .84rem;
+      margin-bottom: 3px;
+    }
+
+    .add-ord-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--PU), #4A148C);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-size: .84rem;
+      font-weight: 900;
+      cursor: pointer;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    /* LOGIN SCREEN */
+    #login-screen {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--BR), var(--BR2), var(--S));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+    }
+
+    .lg-logo {
+      font-family: 'Yatra One', cursive;
+      font-size: 2rem;
+      color: var(--S2);
+      text-shadow: 3px 3px 12px rgba(0, 0, 0, .4);
+      text-align: center;
+      margin-bottom: 3px;
+    }
+
+    .lg-sub {
+      color: #ffe0b2;
+      font-size: .7rem;
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .lg-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 22px 17px;
+      width: 100%;
+      max-width: 330px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .3);
+    }
+
+    .lg-card h2 {
+      font-size: .92rem;
+      color: var(--BR);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .lf {
+      margin-bottom: 11px;
+    }
+
+    .lf label {
+      display: block;
+      font-size: .68rem;
+      font-weight: 800;
+      color: var(--BR);
+      margin-bottom: 3px;
+    }
+
+    .lf input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid var(--BOR);
+      border-radius: 10px;
+      font-size: .84rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .lf input:focus {
+      border-color: var(--S);
+    }
+
+    .lg-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--S), #e65100);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-size: .9rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(255, 107, 26, .4);
+    }
+
+    .lg-err {
+      color: var(--R);
+      font-size: .68rem;
+      text-align: center;
+      margin-top: 6px;
+      min-height: 15px;
+      font-weight: 700;
+    }
+
+    .lg-hint {
+      text-align: center;
+      font-size: .6rem;
+      color: #bbb;
+      margin-top: 9px;
+    }
+
+    .refresh-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .rlbl {
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--BR);
+    }
+
+    .rbtn {
+      background: #fff;
+      border: 2px solid var(--BOR);
+      color: var(--BR);
+      padding: 5px 10px;
+      border-radius: 13px;
+      font-size: .63rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .spin-ico {
+      display: inline-block;
+    }
+
+    .spinning {
+      animation: sp360 .6s linear;
+    }
+
+    @keyframes sp360 {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* TOAST & NOTIFY */
+    .toast {
+      position: fixed;
+      bottom: 82px;
+      left: 50%;
+      transform: translateX(-50%) translateY(14px);
+      background: var(--DARK);
+      color: #fff;
+      padding: 9px 17px;
+      border-radius: 24px;
+      font-size: .75rem;
+      font-weight: 800;
+      opacity: 0;
+      transition: all .3s;
+      z-index: 9999;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .notify {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2000;
+      background: linear-gradient(90deg, var(--G), var(--G2));
+      color: #fff;
+      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      font-weight: 800;
+      transform: translateY(-60px);
+      transition: transform .4s;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+    }
+
+    .notify.show {
+      transform: translateY(0);
+    }
+
+    .nbell {
+      animation: nring .5s ease-in-out infinite alternate;
+      display: inline-block;
+    }
+
+    @keyframes nring {
+      0% {
+        transform: rotate(-16deg)
+      }
+
+      100% {
+        transform: rotate(16deg)
+      }
+    }
+
+    /* OFFER SCROLL */
+    .offer-scroll {
+      display: flex;
+      gap: 10px;
+      padding: 0 15px 15px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .offer-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .o-card {
+      flex-shrink: 0;
+      width: 180px;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, .09);
+    }
+
+    .o-img {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+    }
+
+    .o-body {
+      padding: 8px 10px 10px;
+    }
+
+    .o-name {
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--DARK);
+    }
+
+    .o-desc {
+      font-size: .6rem;
+      color: var(--GREY);
+      margin-top: 1px;
+    }
+
+    .o-price-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .o-new {
+      font-size: .85rem;
+      font-weight: 900;
+      color: var(--S);
+    }
+
+    .o-old {
+      font-size: .65rem;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+
+    .o-save {
+      background: #FFF3E0;
+      color: var(--S);
+      font-size: .53rem;
+      font-weight: 900;
+      padding: 2px 5px;
+      border-radius: 5px;
+      margin-left: auto;
+    }
+
+    /* PARTICLES */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .par {
+      position: absolute;
+      bottom: -20px;
+      opacity: 0;
+      animation: rise linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg)
+      }
+
+      10% {
+        opacity: .45
+      }
+
+      90% {
+        opacity: .12
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-110vh) rotate(360deg)
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="particles" id="particles"></div>
+  <div class="toast" id="toast"></div>
+  <div class="notify" id="notify">
+    <span class="nbell">🔔</span>
+    <span id="notifmsg">New order!</span>
+    <button
+      style="margin-left:auto;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;padding:3px 8px;border-radius:9px;font-size:.62rem;font-weight:800;cursor:pointer;"
+      onclick="this.parentElement.classList.remove('show')">OK</button>
+  </div>
+
+  <!-- ═══ AUTH MODAL ═══ -->
+  <div class="overlay" id="auth-ov">
+    <div class="modal">
+      <div class="mtitle">👤 My Account <button class="mclose" onclick="closeOv('auth-ov')">×</button></div>
+      <div class="auth-tabs"><button class="atab on" onclick="swAuth('in',this)">Sign In</button><button class="atab"
+          onclick="swAuth('up',this)">Sign Up</button></div>
+      <div class="apanel on" id="ap-in">
+        <div class="mf"><label>📱 Mobile Number</label><input type="tel" id="si-ph" placeholder="Enter mobile number">
+        </div>
+        <div class="mf"><label>🔑 Password</label><input type="password" id="si-pw" placeholder="Password"></div>
+        <button class="mprimary" onclick="doSignIn()">Sign In</button>
+        <div class="aerr" id="si-err"></div>
+      </div>
+      <div class="apanel" id="ap-up">
+        <div class="mf"><label>👤 Full Name</label><input type="text" id="su-nm" placeholder="Your name"></div>
+        <div class="mf"><label>📱 Mobile</label><input type="tel" id="su-ph" placeholder="Mobile number"></div>
+        <div class="mf"><label>🏠 Address</label><input type="text" id="su-ad" placeholder="Delivery address"></div>
+        <div class="mf"><label>🔑 Password</label><input type="password" id="su-pw" placeholder="Create password"></div>
+        <button class="mprimary" onclick="doSignUp()">Create Account</button>
+        <div class="aerr" id="su-err"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ADD ORDER MODAL ═══ -->
+  <div class="overlay" id="addord-ov">
+    <div class="modal">
+      <div class="mtitle">➕ Add Order <button class="mclose" onclick="closeOv('addord-ov')">×</button></div>
+      <div class="mf"><label>👤 Customer / Table Name</label><input type="text" id="ao-nm"
+          placeholder="Name or Table no."></div>
+      <div class="mf"><label>📱 Mobile (optional)</label><input type="tel" id="ao-ph" placeholder="Mobile"></div>
+      <div class="m2c">
+        <div class="mf"><label>📅 Date</label><input type="date" id="ao-dt"></div>
+        <div class="mf"><label>⏰ Time</label><input type="time" id="ao-tm"></div>
+      </div>
+      <div class="mf"><label>🍽️ Section</label>
+        <select id="ao-sec">
+          <option>🌄 Tiffins</option>
+          <option>🍗 Biryani</option>
+          <option>🌟 Starters</option>
+          <option>🍜 Fast Food</option>
+        </select>
+      </div>
+      <div class="mf"><label>🛒 Items (one per line)</label><textarea id="ao-items"
+          placeholder="Idli ×2&#10;Filter Coffee ×1"></textarea></div>
+      <div class="m2c">
+        <div class="mf"><label>💰 Amount ₹</label><input type="number" id="ao-amt" placeholder="0"></div>
+        <div class="mf"><label>🚚 Type</label>
+          <select id="ao-type">
+            <option value="delivery">🚚 Delivery</option>
+            <option value="dine">🍽️ Dine In</option>
+            <option value="pickup">🏃 Pickup</option>
+          </select>
+        </div>
+      </div>
+      <div class="mf"><label>🏠 Address (delivery only)</label><input type="text" id="ao-addr"
+          placeholder="Delivery address"></div>
+      <div class="mf"><label>📝 Notes</label><input type="text" id="ao-notes" placeholder="Special instructions"></div>
+      <div class="mf"><label>⚠️ Order Status</label>
+        <select id="ao-st">
+          <option value="new">🆕 New</option>
+          <option value="unbilled">💜 Unbilled (Table)</option>
+          <option value="preparing">🍳 Preparing</option>
+        </select>
+      </div>
+      <button class="mprimary" onclick="doAddOrder()">✅ Add Order</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     ADMIN LOGIN
+═══════════════════════════════════ -->
+  <div id="login-screen" class="page show">
+    <div class="lg-logo">🍽️ Attarillu</div>
+    <div class="lg-sub">FAMILY RESTAURANT · KOTTURU</div>
+    <div class="lg-card">
+      <h2>🔐 Owner Login</h2>
+      <div class="lf"><label>Username</label><input type="text" id="lg-usr" placeholder="admin" autocomplete="off">
+      </div>
+      <div class="lf"><label>Password</label><input type="password" id="lg-pw" placeholder="Password"></div>
+      <button class="lg-btn" onclick="doAdminLogin()">Login to Dashboard</button>
+      <div class="lg-err" id="lg-err"></div>
+      <div class="lg-hint">Default: <b>admin@123</b> / <b>attarillu123321</b></div>
+      <div style="height:1px;background:#f0e0d0;margin:13px 0;"></div>
+      <button
+        style="width:100%;padding:11px;background:linear-gradient(135deg,var(--BR),var(--BR2));color:#fff;border:none;border-radius:11px;font-size:.85rem;font-weight:900;cursor:pointer;"
+        onclick="goToSite()">🍽️ Go to Customer Website</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     ADMIN DASHBOARD
+═══════════════════════════════════ -->
+  <div id="admin-page" class="page">
+    <div class="adm-hdr">
+      <div class="adm-logo">🍽️ Attarillu<small>ADMIN PANEL</small></div>
+      <div class="adm-btns">
+        <button class="adm-chip" onclick="openOv('addord-ov')">➕</button>
+        <button class="adm-chip" onclick="goToSite()">🌐 Site</button>
+        <button class="adm-chip" onclick="doAdminLogout()">Exit</button>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="sbox">
+        <div class="snum" id="st-new">0</div>
+        <div class="slbl">🆕 NEW</div>
+      </div>
+      <div class="sbox">
+        <div class="snum" id="st-act" style="color:var(--AU)">0</div>
+        <div class="slbl">🍳 ACTIVE</div>
+      </div>
+      <div class="sbox">
+        <div class="snum" id="st-unb" style="color:var(--PU)">0</div>
+        <div class="slbl">💜 UNBILLED</div>
+      </div>
+      <div class="sbox">
+        <div class="snum" id="st-rev" style="color:var(--G)">₹0</div>
+        <div class="slbl">💰 TODAY</div>
+      </div>
+    </div>
+
+    <div class="adm-nav">
+      <div class="an on" onclick="showSec('orders',this)"><span class="ni">📋</span>Orders</div>
+      <div class="an" onclick="showSec('unbilled',this)"><span class="ni">💜</span>Unbilled</div>
+      <div class="an" onclick="showSec('menu',this)"><span class="ni">🍽️</span>Menu</div>
+      <div class="an" onclick="showSec('offers',this)"><span class="ni">🔥</span>Offers</div>
+      <div class="an" onclick="showSec('customers',this)"><span class="ni">👥</span>Customers</div>
+      <div class="an" onclick="showSec('revenue',this)"><span class="ni">📊</span>Revenue</div>
+    </div>
+
+    <div class="asec on" id="sec-orders">
+      <div class="frow">
+        <button class="fchip on" onclick="setFil('all',this)">🍽️ All</button>
+        <button class="fchip" onclick="setFil('new',this)">🆕 New</button>
+        <button class="fchip" onclick="setFil('preparing',this)">🍳 Preparing</button>
+        <button class="fchip" onclick="setFil('ready',this)">✅ Ready</button>
+        <button class="fchip" onclick="setFil('out-for-delivery',this)">🚚 Delivery</button>
+        <button class="fchip" onclick="setFil('delivered',this)">🎉 Done</button>
+        <button class="fchip" onclick="setFil('cancelled',this)">❌ Cancelled</button>
+      </div>
+      <div class="refresh-row">
+        <div class="rlbl" id="ord-lbl">All Orders</div>
+        <button class="rbtn" onclick="refreshAll()"><span class="spin-ico" id="spico">🔄</span> Refresh</button>
+      </div>
+      <div id="orders-list"></div>
+    </div>
+
+    <div class="asec" id="sec-unbilled">
+      <div class="unb-note"><b>💜 Unbilled / Table Orders</b>Customers eating at tables — bill them when ready.</div>
+      <button class="add-ord-btn" onclick="openOv('addord-ov');document.getElementById('ao-st').value='unbilled'">➕ Add
+        Table / Walk-in Order</button>
+      <div id="unbilled-list"></div>
+    </div>
+
+    <div class="asec" id="sec-menu">
+      <div class="add-item-form" id="add-item-form" style="display:none">
+        <h4>➕ Add New Menu Item</h4>
+        <div class="mf"><label>Item Name</label><input type="text" id="ni-name" placeholder="e.g. Masala Dosa"></div>
+        <div class="m2c">
+          <div class="mf"><label>Price ₹</label><input type="number" id="ni-price" placeholder="0"></div>
+          <div class="mf"><label>Category</label>
+            <select id="ni-cat">
+              <option>Tiffins</option>
+              <option>Biryani</option>
+              <option>Starters</option>
+              <option>Fast Food</option>
+            </select>
+          </div>
+        </div>
+        <div class="mf"><label>Emoji Icon</label><input type="text" id="ni-ico" placeholder="🍽️" maxlength="4"></div>
+        <div class="mf"><label>Price Note (optional)</label><input type="text" id="ni-note"
+            placeholder="e.g. Half / Full available"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button
+            style="padding:10px;background:var(--S);color:#fff;border:none;border-radius:10px;font-weight:900;cursor:pointer;"
+            onclick="doAddItem()">✅ Add</button>
+          <button
+            style="padding:10px;background:#f0e8e0;color:var(--BR);border:none;border-radius:10px;font-weight:900;cursor:pointer;"
+            onclick="document.getElementById('add-item-form').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button
+          style="flex:1;padding:10px;background:var(--S);color:#fff;border:none;border-radius:10px;font-size:.8rem;font-weight:900;cursor:pointer;"
+          onclick="document.getElementById('add-item-form').style.display='block';document.getElementById('add-item-form').scrollIntoView({behavior:'smooth'})">➕
+          Add New Item</button>
+      </div>
+      <div class="frow" id="menu-filters">
+        <button class="fchip on" onclick="setMenuFil('all',this)">All</button>
+        <button class="fchip" onclick="setMenuFil('Tiffins',this)">🌄 Tiffins</button>
+        <button class="fchip" onclick="setMenuFil('Biryani',this)">🍗 Biryani</button>
+        <button class="fchip" onclick="setMenuFil('Starters',this)">🌟 Starters</button>
+        <button class="fchip" onclick="setMenuFil('Fast Food',this)">🍜 Fast Food</button>
+      </div>
+      <div id="menu-list"></div>
+    </div>
+
+    <div class="asec" id="sec-offers">
+      <div
+        style="font-size:.72rem;color:var(--GREY);background:#fff;border-radius:10px;padding:10px 12px;margin-bottom:11px;font-weight:600;">
+        🔥 Manage special offers shown at top of customer site.</div>
+      <div id="offers-list"></div>
+      <button
+        style="width:100%;padding:11px;background:linear-gradient(135deg,var(--S),#BF360C);color:#fff;border:none;border-radius:11px;font-size:.84rem;font-weight:900;cursor:pointer;"
+        onclick="addNewOffer()">➕ Add New Offer</button>
+    </div>
+
+    <div class="asec" id="sec-customers">
+      <div class="add-item-form" id="add-cust-form" style="display:none">
+        <h4>➕ Add New Customer</h4>
+        <div class="mf"><label>Full Name</label><input type="text" id="nc-name" placeholder="Customer name"></div>
+        <div class="mf"><label>Mobile</label><input type="tel" id="nc-phone" placeholder="Mobile number"></div>
+        <div class="mf"><label>Address</label><input type="text" id="nc-addr" placeholder="Address"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button
+            style="padding:10px;background:var(--S);color:#fff;border:none;border-radius:10px;font-weight:900;cursor:pointer;"
+            onclick="doAddCustomer()">✅ Add</button>
+          <button
+            style="padding:10px;background:#f0e8e0;color:var(--BR);border:none;border-radius:10px;font-weight:900;cursor:pointer;"
+            onclick="document.getElementById('add-cust-form').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button
+          style="flex:1;padding:10px;background:var(--S);color:#fff;border:none;border-radius:10px;font-size:.8rem;font-weight:900;cursor:pointer;"
+          onclick="document.getElementById('add-cust-form').style.display='block';document.getElementById('add-cust-form').scrollIntoView({behavior:'smooth'})">➕
+          Add New Customer</button>
+      </div>
+      <div class="refresh-row">
+        <div class="rlbl">Registered Customers</div>
+      </div>
+      <div id="cust-list"></div>
+    </div>
+
+    <div class="asec" id="sec-revenue">
+      <div class="rev-grid">
+        <div class="rcard"><span class="ri">📅</span>
+          <div class="rn" id="rv-today">₹0</div>
+          <div class="rl">Today</div>
+        </div>
+        <div class="rcard"><span class="ri">📆</span>
+          <div class="rn" id="rv-week">₹0</div>
+          <div class="rl">This Week</div>
+        </div>
+        <div class="rcard"><span class="ri">📊</span>
+          <div class="rn" id="rv-total">0</div>
+          <div class="rl">Total Orders</div>
+        </div>
+        <div class="rcard"><span class="ri">✅</span>
+          <div class="rn" id="rv-avg">₹0</div>
+          <div class="rl">Avg Order</div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:13px;padding:13px;">
+        <div style="font-weight:900;margin-bottom:8px;font-size:.8rem;">📋 Daily Breakdown</div>
+        <div id="rv-breakdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     CUSTOMER SITE
+═══════════════════════════════════ -->
+  <div id="customer-page" class="page">
+
+    <div id="site-header">
+      <div class="hdr-inner">
+        <div class="logo">🍽️ Attarillu<small>FAMILY RESTAURANT · KOTTURU</small></div>
+        <div class="hdr-actions">
+          <div id="user-chip" class="chip" onclick="openAuth()">👤 Sign In</div>
+          <div class="chip" style="font-size:.6rem;padding:6px 9px;" onclick="goToAdmin()">⚙️</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee-bar">
+      <marquee id="offer-marquee">🎉 Welcome to Attarillu Family Restaurant, Kotturu! Fresh food served daily!</marquee>
+    </div>
+
+    <div class="hero">
+      <span class="hero-ico">🍽️</span>
+      <h1>Attarillu</h1>
+      <p class="tagline">Family Restaurant</p>
+      <p class="location">📍 Kotturu</p>
+      <div class="hero-pills">
+        <span class="hero-pill">🥞 Tiffins</span>
+        <span class="hero-pill">🍗 Biryani</span>
+        <span class="hero-pill">🌟 Starters</span>
+        <span class="hero-pill">🍜 Fast Food</span>
+      </div>
+    </div>
+
+    <div class="del-strip">
+      <span class="ico">🚚</span>
+      <div>
+        <div>Home Delivery Available!</div>
+        <div style="font-size:.63rem;font-weight:600;opacity:.9">Order now — fast delivery</div>
+      </div>
+      <button class="order-btn" onclick="scrollBook()">ORDER NOW</button>
+    </div>
+
+    <div class="sec-head" id="offers-sec">🔥 Special Offers</div>
+    <div class="offer-scroll" id="offer-scroll"></div>
+
+    <div class="sec-head">🍽️ Our Menu</div>
+    <div class="menu-tabs">
+      <button class="mtab on" onclick="showTab('tiffin',this)"><span class="me">🌄</span>Tiffins</button>
+      <button class="mtab" onclick="showTab('biryani',this)"><span class="me">🍗</span>Biryani</button>
+      <button class="mtab" onclick="showTab('starters',this)"><span class="me">🌟</span>Starters</button>
+      <button class="mtab" onclick="showTab('fastfood',this)"><span class="me">🍜</span>Fast Food</button>
+    </div>
+    <div class="mpanel on" id="mp-tiffin">
+      <div class="mgrid" id="grid-tiffin"></div>
+    </div>
+    <div class="mpanel" id="mp-biryani">
+      <div class="mgrid" id="grid-biryani"></div>
+    </div>
+    <div class="mpanel" id="mp-starters">
+      <div class="mgrid" id="grid-starters"></div>
+    </div>
+    <div class="mpanel" id="mp-fastfood">
+      <div class="mgrid" id="grid-fastfood"></div>
+    </div>
+
+    <div class="sec-head" id="booking">📋 Book Your Order</div>
+    <div class="booking-box">
+      <h3>🛒 Place Your Order</h3>
+      <div class="login-notice" id="login-notice" onclick="openAuth()">👋 <b>Sign in</b> for faster checkout & order
+        tracking!</div>
+      <div class="tog-row">
+        <button class="tog on" id="tog-dine" onclick="setOT('dine')">🍽️ Dine In</button>
+        <button class="tog" id="tog-delivery" onclick="setOT('delivery')">🚚 Delivery</button>
+        <button class="tog" id="tog-pickup" onclick="setOT('pickup')">🏃 Pickup</button>
+      </div>
+      <div class="ff"><label>👤 Name</label><input type="text" id="c-name" placeholder="Your full name"></div>
+      <div class="ff"><label>📱 Mobile</label><input type="tel" id="c-phone" placeholder="+91 00000 00000"></div>
+      <div id="addr-wrap" style="display:none">
+        <div class="ff"><label>🏠 Delivery Address</label><textarea id="c-addr"
+            placeholder="House no, Street, Area..."></textarea></div>
+      </div>
+      <div class="f2">
+        <div class="ff"><label>📅 Date</label><input type="date" id="c-date"></div>
+        <div class="ff"><label>⏰ Time</label><input type="time" id="c-time"></div>
+      </div>
+      <div class="ff"><label>🍽️ Section</label>
+        <select id="c-sec">
+          <option value="">Choose section...</option>
+          <option>🌄 Tiffins (7am–11am)</option>
+          <option>🍗 Biryani (12pm–3pm)</option>
+          <option>🌟 Starters</option>
+          <option>🍜 Fast Food</option>
+        </select>
+      </div>
+      <div class="ff"><label>📝 Special Instructions</label><textarea id="c-notes"
+          placeholder="Spice level, allergies, extra requests..."></textarea></div>
+      <div class="cart-box" id="cart-box">
+        <div id="cart-items"></div>
+        <div class="cart-total-row"><span>Total</span><span id="cart-total">₹0</span></div>
+      </div>
+      <div class="pay-lbl">💳 Payment Method</div>
+      <div class="pay-grid">
+        <div class="pay-opt on" id="po-cash" onclick="setPay('cash')"><span class="pi">💵</span>
+          <div class="pl">Cash</div>
+        </div>
+        <div class="pay-opt" id="po-upi" onclick="setPay('upi')"><span class="pi">📲</span>
+          <div class="pl">UPI / Online</div>
+        </div>
+        <div class="pay-opt" id="po-wa" onclick="setPay('whatsapp')"><span class="pi">💬</span>
+          <div class="pl">WhatsApp</div>
+        </div>
+        <div class="pay-opt" id="po-card" onclick="setPay('card')"><span class="pi">💳</span>
+          <div class="pl">Card</div>
+        </div>
+      </div>
+      <div class="upi-box" id="upi-box">
+        <div style="font-size:.73rem;font-weight:800;color:var(--PU)">Pay via UPI</div>
+        <div class="upi-id">9963114990@ibl</div>
+        <div class="upi-apps">
+          <div class="ua">
+            <div class="ua-ico" style="background:#4CAF50">📱</div>GPay
+          </div>
+          <div class="ua">
+            <div class="ua-ico" style="background:#6739B7">📲</div>PhonePe
+          </div>
+          <div class="ua">
+            <div class="ua-ico" style="background:#002970">💳</div>Paytm
+          </div>
+          <div class="ua">
+            <div class="ua-ico" style="background:var(--S)">🏦</div>BHIM
+          </div>
+        </div>
+        <button class="copy-btn"
+          onclick="navigator.clipboard&&navigator.clipboard.writeText('9963114990@ibl');showToast('📋 UPI ID copied!')">📋
+          Copy UPI ID</button>
+      </div>
+      <button class="btn-submit" onclick="submitOrder()">✅ Confirm Order</button>
+      <div style="text-align:center;font-size:.65rem;color:#bbb;margin:8px 0;">— or send order via —</div>
+      <button class="btn-wa" onclick="bookWA()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
+          <path
+            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.851L.057 23.928a.5.5 0 0 0 .611.625l6.278-1.643A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.513-5.238-1.406l-.374-.222-3.878 1.015 1.037-3.79-.245-.39A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+        </svg>
+        Book via WhatsApp
+      </button>
+    </div>
+
+    <div class="sec-head">📍 Find Us</div>
+    <div class="map-wrap">
+      <div style="line-height:0"><iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15228.445!2d79.5231!3d14.7833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4c8c0f2b1a2b3c%3A0x1234567890abcdef!2sKotturu!5e0!3m2!1sen!2sin!4v1"
+          width="100%" height="190" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+      <div class="map-btns">
+        <a class="map-btn blue" href="https://www.google.com/maps/search/Attarillu+Restaurant+Kotturu"
+          target="_blank">🗺️ Get Directions</a>
+        <a class="map-btn grn" href="https://wa.me/919876543210?text=Hi! Please share your restaurant location."
+          target="_blank">📍 Share Location</a>
+      </div>
+      <div class="map-addr">📍 <div>
+          <div style="font-weight:800">Attarillu Family Restaurant</div>
+          <div style="font-size:.67rem;color:var(--GREY);font-weight:600">Kotturu, Andhra Pradesh</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>⏰ Restaurant Hours</h3>
+      <div class="hrs-grid">
+        <div class="hc"><span class="he">🌄</span>
+          <div class="hn">MORNING</div>
+          <div class="ht">7am–11am</div>
+        </div>
+        <div class="hc"><span class="he">🌞</span>
+          <div class="hn">AFTERNOON</div>
+          <div class="ht">12pm–4pm</div>
+        </div>
+        <div class="hc"><span class="he">🌇</span>
+          <div class="hn">EVENING</div>
+          <div class="ht">5pm–10pm</div>
+        </div>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,.1);margin:11px 0"></div>
+      <div class="info-row">📞 <a href="tel:+919963114990" style="color:#fff;font-weight:700">+91 9963114990<br><small
+            style="opacity:.7;font-weight:400">Tap to Call</small></a></div>
+      <div class="info-row"><span style="color:var(--WA)">💬</span> <a
+          href="https://wa.me/919963114990?text=Hi Attarillu! I want to place an order." target="_blank"
+          style="color:var(--WA);font-weight:800">WhatsApp Order<br><small style="color:#aaa;font-weight:400">Fastest
+            way to order</small></a></div>
+      <div class="info-row">🚚 <span>Home delivery available · Free above ₹200</span></div>
+    </div>
+
+    <footer>
+      <div class="fn">🍽️ Attarillu Family Restaurant</div>
+      <div>Kotturu · Authentic Home-style Cooking · Fresh Daily</div>
+      <div style="margin-top:4px;color:#444">© 2025 Attarillu Restaurant</div>
+    </footer>
+
+    <div class="cart-fab" onclick="scrollBook()">🛒<div class="ccount" id="ccnt">0</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════ -->
+  <script>
+    const SK = 'att_orders', USK = 'att_users', CSK = 'att_session', MK = 'att_menu', OK = 'att_offers';
+    const ADMIN_USER = 'admin', ADMIN_PASS = 'attarillu123', WA_PHONE = '919963114990';
+    let cart = [], orderType = 'dine', payMethod = 'cash', currentUser = null, menuCatFilter = 'all', orderFilter = 'all', orders = [], lastOrderCount = 0;
+
+    // ═══ YOUR EXACT MENU ═══
+    const DEFAULT_MENU = [
+      // TIFFINS
+      { id: 't1', name: 'Idli (4 pcs)', price: 20, cat: 'Tiffins', ico: '🥞', desc: '4 soft idlis with sambar & chutney', avail: true, prevPrice: 20 },
+      { id: 't2', name: 'Mysore Bonda (4 pcs)', price: 20, cat: 'Tiffins', ico: '🟡', desc: '4 crispy Mysore bondas', avail: true, prevPrice: 20 },
+      { id: 't3', name: 'Onion Bonda (3 pcs)', price: 20, cat: 'Tiffins', ico: '🧅', desc: '3 crunchy onion bondas', avail: true, prevPrice: 20 },
+      { id: 't4', name: 'Puri (2 pcs)', price: 30, cat: 'Tiffins', ico: '🫔', desc: '2 fluffy puris with curry', avail: true, prevPrice: 30 },
+      { id: 't5', name: 'Onion Dosa', price: 30, cat: 'Tiffins', ico: '🫓', desc: 'Crispy dosa with onion filling', avail: true, prevPrice: 30 },
+      { id: 't6', name: 'Egg Dosa (Single)', price: 40, cat: 'Tiffins', ico: '🍳', desc: 'Dosa with single egg', avail: true, prevPrice: 40, note: 'Double egg ₹50' },
+      { id: 't7', name: 'Plain Dosa', price: 25, cat: 'Tiffins', ico: '🫓', desc: 'Classic plain dosa', avail: true, prevPrice: 25 },
+      { id: 't8', name: 'Pesarattu Upma', price: 40, cat: 'Tiffins', ico: '🥣', desc: 'Green moong dosa with upma', avail: true, prevPrice: 40 },
+      { id: 't9', name: 'Vada (4 pcs)', price: 20, cat: 'Tiffins', ico: '🍩', desc: '4 crispy medu vadas', avail: true, prevPrice: 20 },
+      // BIRYANI
+      { id: 'b1', name: 'Dum Biryani', price: 130, cat: 'Biryani', ico: '🍗', desc: 'Slow-cooked dum style', avail: true, prevPrice: 130, bg: 'linear-gradient(135deg,#6B2D0A,#C0392B)' },
+      { id: 'b2', name: 'Fry Biryani', price: 130, cat: 'Biryani', ico: '🍗', desc: 'Crispy fry biryani', avail: true, prevPrice: 130, bg: 'linear-gradient(135deg,#8B4513,#D2691E)' },
+      { id: 'b3', name: 'Lollypops Biryani', price: 180, cat: 'Biryani', ico: '🍢', desc: 'With juicy lollypop pieces', avail: true, prevPrice: 180, bg: 'linear-gradient(135deg,#4A0000,#8B0000)' },
+      { id: 'b4', name: 'Mogalai Biryani', price: 180, cat: 'Biryani', ico: '👑', desc: 'Royal Mughlai style', avail: true, prevPrice: 180, bg: 'linear-gradient(135deg,#3E1A00,#8B5E3C)' },
+      { id: 'b5', name: 'Veg Biryani', price: 100, cat: 'Biryani', ico: '🥦', desc: 'Fresh vegetable biryani', avail: true, prevPrice: 100, bg: 'linear-gradient(135deg,#1B5E20,#43A047)' },
+      { id: 'b6', name: 'Wings Biryani', price: 160, cat: 'Biryani', ico: '🍖', desc: 'With chicken wings', avail: true, prevPrice: 160, bg: 'linear-gradient(135deg,#880E4F,#E91E63)' },
+      { id: 'b7', name: 'Prawn Biryani', price: 180, cat: 'Biryani', ico: '🦐', desc: 'Fresh prawn biryani', avail: true, prevPrice: 180, bg: 'linear-gradient(135deg,#1A237E,#3F51B5)' },
+      // STARTERS
+      { id: 's1', name: 'Lollypops', price: 140, cat: 'Starters', ico: '🍢', desc: 'Crispy chicken lollypops', avail: true, prevPrice: 140, bg: 'linear-gradient(135deg,#B71C1C,#F44336)' },
+      { id: 's2', name: 'Wings', price: 140, cat: 'Starters', ico: '🍗', desc: 'Spicy chicken wings', avail: true, prevPrice: 140, bg: 'linear-gradient(135deg,#880E4F,#E91E63)' },
+      { id: 's3', name: 'Leg Piece', price: 50, cat: 'Starters', ico: '🦵', desc: 'Single chicken leg piece', avail: true, prevPrice: 50, bg: 'linear-gradient(135deg,#6B2D0A,#D2691E)' },
+      { id: 's4', name: 'Chicken Manchurian', price: 130, cat: 'Starters', ico: '🥘', desc: 'Indo-Chinese style', avail: true, prevPrice: 130, bg: 'linear-gradient(135deg,#1A237E,#F57F17)' },
+      { id: 's5', name: 'Chilli Chicken', price: 130, cat: 'Starters', ico: '🌶️', desc: 'Spicy chilli chicken', avail: true, prevPrice: 130, bg: 'linear-gradient(135deg,#B71C1C,#FF6B1A)' },
+      { id: 's6', name: 'Liver Fry', price: 100, cat: 'Starters', ico: '🍖', desc: 'Masala liver fry', avail: true, prevPrice: 100, bg: 'linear-gradient(135deg,#4A0000,#8B0000)' },
+      // FAST FOOD
+      { id: 'f1', name: 'Chicken Fried Rice (Half)', price: 70, cat: 'Fast Food', ico: '🍚', desc: 'Half plate fried rice', avail: true, prevPrice: 70, note: 'Full ₹100', bg: 'linear-gradient(135deg,#8B4513,#FFB347)' },
+      { id: 'f2', name: 'Chicken Noodles (Half)', price: 70, cat: 'Fast Food', ico: '🍜', desc: 'Half plate noodles', avail: true, prevPrice: 70, note: 'Full ₹100', bg: 'linear-gradient(135deg,#FF6B1A,#FFB347)' },
+      { id: 'f3', name: 'Egg Fried Rice', price: 50, cat: 'Fast Food', ico: '🍳', desc: 'Single egg fried rice', avail: true, prevPrice: 50, note: 'Double egg ₹60', bg: 'linear-gradient(135deg,#F57F17,#FFD54F)' },
+      { id: 'f4', name: 'Egg Noodles', price: 50, cat: 'Fast Food', ico: '🍜', desc: 'Single egg noodles', avail: true, prevPrice: 50, note: 'Double egg ₹60', bg: 'linear-gradient(135deg,#E65100,#FFB300)' },
+      { id: 'f5', name: 'Punugulu (with Chutney)', price: 20, cat: 'Fast Food', ico: '🟤', desc: 'Crispy punugulu + chutney', avail: true, prevPrice: 20 },
+      { id: 'f6', name: 'Bajji', price: 20, cat: 'Fast Food', ico: '🧇', desc: 'Hot crispy bajji', avail: true, prevPrice: 20 },
+    ];
+
+    const DEFAULT_OFFERS = [
+      { id: 'o1', name: 'Dum Biryani + Raita', desc: 'Lunch special combo!', newP: 150, oldP: 160, save: 10, active: true, ico: '🍗' },
+      { id: 'o2', name: 'Lollypops + Biryani', desc: 'Starter + Main combo', newP: 280, oldP: 310, save: 30, active: true, ico: '🍢' },
+      { id: 'o3', name: 'Family Tiffin Pack', desc: 'Idli+Dosa+Vada+Coffee', newP: 99, oldP: 115, save: 16, active: true, ico: '🥞' },
+    ];
+
+    const DEMO_ORDERS = [
+      { id: 'ORD001', name: 'Ravi Kumar', phone: '98765 43210', type: 'dine', section: '🌄 Tiffins', items: ['Idli ×2', 'Vada ×1'], date: todayStr(), time: '08:15', status: 'new', amount: 60, payMethod: 'cash', notes: 'Extra chutney', ts: Date.now() - 6 * 60000 },
+      { id: 'ORD002', name: 'Table 3', phone: '—', type: 'dine', section: '🍗 Biryani', items: ['Dum Biryani ×2', 'Lollypops ×1'], date: todayStr(), time: '13:00', status: 'unbilled', amount: 400, payMethod: 'cash', notes: '', ts: Date.now() - 15 * 60000 },
+      { id: 'ORD003', name: 'Suresh', phone: '87654 32109', type: 'delivery', section: '🌟 Starters', items: ['Chilli Chicken ×1', 'Wings ×1'], date: todayStr(), time: '14:30', status: 'preparing', amount: 270, payMethod: 'upi', notes: 'Less spice', address: 'MG Road, Kotturu', ts: Date.now() - 25 * 60000 },
+    ];
+
+    function todayStr() { return new Date().toISOString().split('T')[0]; }
+    function getMenu() { return JSON.parse(localStorage.getItem(MK) || JSON.stringify(DEFAULT_MENU)); }
+    function saveMenu(m) { localStorage.setItem(MK, JSON.stringify(m)); }
+    function getOffers() { return JSON.parse(localStorage.getItem(OK) || JSON.stringify(DEFAULT_OFFERS)); }
+    function saveOffers(o) { localStorage.setItem(OK, JSON.stringify(o)); }
+    function getOrders() { const r = localStorage.getItem(SK); return r ? JSON.parse(r) : null; }
+    function saveOrders() { localStorage.setItem(SK, JSON.stringify(orders)); }
+    function getUsers() { return JSON.parse(localStorage.getItem(USK) || '[]'); }
+    function saveUsers(u) { localStorage.setItem(USK, JSON.stringify(u)); }
+
+    function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('show')); document.getElementById(id).classList.add('show'); }
+    function goToSite() { showPage('customer-page'); buildSite(); }
+    function goToAdmin() { showPage('login-screen'); }
+
+    window.onload = () => {
+      // particles
+      const ems = ['🌶️', '🍚', '🍗', '🍦', '☕', '✨', '🥞', '🌿', '🍜'];
+      const pc = document.getElementById('particles');
+      for (let i = 0; i < 14; i++) { const p = document.createElement('div'); p.className = 'par'; p.textContent = ems[i % ems.length]; p.style.left = Math.random() * 100 + '%'; p.style.animationDuration = (9 + Math.random() * 10) + 's'; p.style.animationDelay = (Math.random() * 14) + 's'; p.style.fontSize = (.6 + Math.random() * .75) + 'rem'; pc.appendChild(p); }
+      document.getElementById('c-date').value = todayStr();
+      const sess = JSON.parse(localStorage.getItem(CSK) || 'null');
+      if (sess) { currentUser = sess; updateChip(); prefill(); }
+      const raw = getOrders();
+      if (raw) orders = raw; else { orders = [...DEMO_ORDERS]; saveOrders(); }
+      lastOrderCount = orders.length;
+      buildSite();
+    };
+
+    // ADMIN LOGIN
+    function doAdminLogin() {
+      const u = document.getElementById('lg-usr').value.trim();
+      const p = document.getElementById('lg-pw').value;
+      if (u === ADMIN_USER && p === ADMIN_PASS) { showPage('admin-page'); initAdmin(); }
+      else document.getElementById('lg-err').textContent = '❌ Wrong username or password';
+    }
+    document.getElementById('lg-pw').addEventListener('keydown', e => { if (e.key === 'Enter') doAdminLogin(); });
+    function doAdminLogout() { showPage('login-screen'); document.getElementById('lg-pw').value = ''; document.getElementById('lg-err').textContent = ''; }
+
+    function initAdmin() {
+      const raw = getOrders(); if (raw) orders = raw;
+      lastOrderCount = orders.length;
+      renderOrders(); renderUnbilled(); renderMenu(); renderOffers(); renderCustomers(); renderRevenue(); updateStats();
+      setInterval(() => {
+        const r = getOrders(); if (r) orders = r;
+        if (orders.length > lastOrderCount) { showNotify('🔔 ' + (orders.length - lastOrderCount) + ' new order(s)!'); playBeep(); lastOrderCount = orders.length; }
+        renderOrders(); renderUnbilled(); updateStats(); renderRevenue();
+      }, 15000);
+    }
+
+    function showSec(id, el) { document.querySelectorAll('.asec').forEach(s => s.classList.remove('on')); document.querySelectorAll('.an').forEach(t => t.classList.remove('on')); document.getElementById('sec-' + id).classList.add('on'); el.classList.add('on'); }
+    function updateStats() {
+      const t = todayStr(), tod = orders.filter(o => o.date === t);
+      document.getElementById('st-new').textContent = tod.filter(o => o.status === 'new').length;
+      document.getElementById('st-act').textContent = tod.filter(o => ['preparing', 'ready', 'out-for-delivery'].includes(o.status)).length;
+      document.getElementById('st-unb').textContent = tod.filter(o => o.status === 'unbilled').length;
+      document.getElementById('st-rev').textContent = '₹' + tod.filter(o => !['cancelled', 'unbilled'].includes(o.status)).reduce((a, o) => a + (o.amount || 0), 0);
+    }
+    function setFil(f, el) { orderFilter = f; document.querySelectorAll('#sec-orders .fchip').forEach(c => c.classList.remove('on')); el.classList.add('on'); renderOrders(); }
+    function renderOrders() {
+      let list = [...orders].reverse().filter(o => o.status !== 'unbilled');
+      if (orderFilter !== 'all') list = list.filter(o => o.status === orderFilter);
+      const c = document.getElementById('orders-list');
+      document.getElementById('ord-lbl').textContent = list.length + ' Order' + (list.length !== 1 ? 's' : '');
+      c.innerHTML = list.length ? list.map(o => ocHTML(o)).join('') : '<div style="text-align:center;padding:40px;color:#ccc"><div style="font-size:2rem">🍽️</div>No orders found</div>';
+    }
+    function renderUnbilled() {
+      const list = orders.filter(o => o.status === 'unbilled').reverse();
+      document.getElementById('unbilled-list').innerHTML = list.length ? list.map(o => ocHTML(o, true)).join('') : '<div style="text-align:center;padding:40px;color:#ccc"><div style="font-size:2rem">💜</div>No unbilled orders</div>';
+    }
+    function ocHTML(o) {
+      const tIco = o.type === 'delivery' ? '🚚' : o.type === 'pickup' ? '🏃' : '🍴';
+      let acts = '';
+      if (o.status === 'new') acts = `<button class="ab green" onclick="updSt('${o.id}','preparing')"><span class="ai">🍳</span>Accept</button><button class="ab red" onclick="updSt('${o.id}','cancelled')"><span class="ai">❌</span>Cancel</button>`;
+      else if (o.status === 'preparing') acts = `<button class="ab blue" onclick="updSt('${o.id}','ready')"><span class="ai">✅</span>Ready</button><button class="ab red" onclick="updSt('${o.id}','cancelled')"><span class="ai">❌</span>Cancel</button>`;
+      else if (o.status === 'ready') acts = o.type === 'delivery' ? `<button class="ab purple" onclick="updSt('${o.id}','out-for-delivery')"><span class="ai">🚚</span>Send Out</button>` : `<button class="ab purple" onclick="updSt('${o.id}','delivered')"><span class="ai">🎉</span>Delivered</button>`;
+      else if (o.status === 'out-for-delivery') acts = `<button class="ab purple" onclick="updSt('${o.id}','delivered')"><span class="ai">🎉</span>Delivered</button>`;
+      else if (o.status === 'unbilled') acts = `<button class="ab gold" onclick="genBill('${o.id}')"><span class="ai">🧾</span>Bill</button><button class="ab blue" onclick="updSt('${o.id}','delivered')"><span class="ai">✅</span>Done</button><button class="ab red" onclick="updSt('${o.id}','cancelled')"><span class="ai">❌</span>Cancel</button>`;
+      else acts = `<button class="ab red" onclick="delOrder('${o.id}')"><span class="ai">🗑️</span>Remove</button>`;
+      return `<div class="ocard ${o.status}"><div class="oc-top"><div><div class="oc-id">#${o.id} · ${timeAgo(o.ts)}</div><div class="oc-name">${o.name}</div><div class="oc-ph">📞 ${o.phone || '—'}</div></div><div class="oc-r"><span class="sbadge sb-${o.status}">${stLabel(o.status)}</span><span class="oc-amt">₹${o.amount || 0} · ${(o.payMethod || 'cash').toUpperCase()}</span></div></div><div class="oc-items">${o.items ? o.items.map(i => '• ' + i).join('<br>') : '• No items'}${o.notes ? `<div style="margin-top:4px;color:#aaa;font-size:.63rem">📝 ${o.notes}</div>` : ''}</div><div class="oc-meta"><span class="mtag">${tIco} ${o.type === 'delivery' ? 'Delivery' : o.type === 'pickup' ? 'Pickup' : 'Dine In'}</span><span class="mtag">🕐 ${o.time || '—'}</span><span class="mtag">📅 ${fmtDate(o.date)}</span>${o.section ? `<span class="mtag">${o.section}</span>` : ''}${o.type === 'delivery' && o.address ? `<span class="mtag" style="color:var(--BL)">📍 ${o.address}</span>` : ''}</div><div class="oc-acts">${acts}</div></div>`;
+    }
+    function updSt(id, s) { const idx = orders.findIndex(o => o.id === id); if (idx < 0) return; orders[idx].status = s; saveOrders(); renderOrders(); renderUnbilled(); updateStats(); renderRevenue(); showToast({ preparing: '🍳 Accepted!', ready: '✅ Ready!', 'out-for-delivery': '🚚 Out for delivery!', delivered: '🎉 Delivered!', cancelled: '❌ Cancelled' }[s] || 'Updated'); }
+    function delOrder(id) { orders = orders.filter(o => o.id !== id); saveOrders(); renderOrders(); updateStats(); showToast('🗑️ Removed'); }
+    function genBill(id) { const o = orders.find(x => x.id === id); if (!o) return; alert(`🧾 BILL — Attarillu Family Restaurant\nKotturu\n${'─'.repeat(32)}\nOrder: #${o.id}\nCustomer: ${o.name}\nDate: ${o.date} at ${o.time}\n\nItems:\n${o.items ? o.items.join('\n') : '—'}\n${'─'.repeat(32)}\nTotal: ₹${o.amount}\nPayment: ${(o.payMethod || 'Cash').toUpperCase()}\n${'─'.repeat(32)}\nThank you! Visit again 🙏`); }
+    function openOv(id) { document.getElementById(id).classList.add('show'); }
+    function closeOv(id) { document.getElementById(id).classList.remove('show'); }
+    function doAddOrder() {
+      const nm = document.getElementById('ao-nm').value.trim() || 'Walk-in';
+      const ph = document.getElementById('ao-ph').value.trim() || '—';
+      const dt = document.getElementById('ao-dt').value || todayStr();
+      const tm = document.getElementById('ao-tm').value || '12:00';
+      const sec = document.getElementById('ao-sec').value;
+      const rawItems = document.getElementById('ao-items').value.trim();
+      const amt = parseInt(document.getElementById('ao-amt').value) || 0;
+      const type = document.getElementById('ao-type').value;
+      const addr = document.getElementById('ao-addr').value.trim();
+      const notes = document.getElementById('ao-notes').value.trim();
+      const st = document.getElementById('ao-st').value;
+      const id = 'ORD' + String(Date.now()).slice(-6);
+      orders.push({ id, name: nm, phone: ph, date: dt, time: tm, section: sec, type, items: rawItems ? rawItems.split('\n').filter(Boolean) : ['Manual order'], address: addr, notes, status: st, amount: amt, payMethod: 'cash', ts: Date.now() });
+      saveOrders(); renderOrders(); renderUnbilled(); updateStats(); renderRevenue();
+      closeOv('addord-ov'); showToast('✅ Order #' + id + ' added!');
+      ['ao-nm', 'ao-ph', 'ao-items', 'ao-amt', 'ao-addr', 'ao-notes'].forEach(k => document.getElementById(k).value = '');
+      document.getElementById('ao-dt').value = todayStr();
+    }
+
+    // MENU MANAGER
+    function setMenuFil(f, el) { menuCatFilter = f; document.querySelectorAll('#menu-filters .fchip').forEach(c => c.classList.remove('on')); el.classList.add('on'); renderMenu(); }
+    function renderMenu() {
+      const menu = getMenu();
+      let items = menuCatFilter === 'all' ? menu : menu.filter(i => i.cat === menuCatFilter);
+      if (!items.length) { document.getElementById('menu-list').innerHTML = '<div style="text-align:center;padding:40px;color:#ccc">No items</div>'; return; }
+      document.getElementById('menu-list').innerHTML = items.map(item => {
+        const diff = item.price - item.prevPrice;
+        const chg = diff > 0 ? `<span class="price-up">▲ ₹${diff} increased</span>` : diff < 0 ? `<span class="price-dn">▼ ₹${Math.abs(diff)} reduced</span>` : `<span style="color:#bbb;font-size:.58rem">No change</span>`;
+        return `<div class="item-card"><div class="item-hdr"><div class="item-ico">${item.ico}</div><div class="item-info"><div class="item-name">${item.name}</div><div class="item-cat">${item.cat}${item.note ? ` · ${item.note}` : ''}</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><div class="item-price-tag">₹${item.price}</div><button class="item-status ${item.avail ? 'avail' : 'unavail'}" onclick="toggleAvail('${item.id}')">${item.avail ? '✅ Available' : '❌ N/A'}</button></div></div><div class="item-body"><div style="flex:1"><input class="price-inp" type="number" id="pi-${item.id}" value="${item.price}" placeholder="Price ₹"><div class="price-change">${chg} (was ₹${item.prevPrice})</div></div><button class="save-btn" onclick="saveItemPrice('${item.id}')">💾 Save</button><button class="del-btn" onclick="delItem('${item.id}')">🗑️</button></div></div>`;
+      }).join('');
+    }
+    function toggleAvail(id) { const menu = getMenu(); const idx = menu.findIndex(i => i.id === id); if (idx < 0) return; menu[idx].avail = !menu[idx].avail; saveMenu(menu); renderMenu(); buildSite(); showToast(menu[idx].avail ? '✅ Item now available!' : '❌ Marked unavailable'); }
+    function saveItemPrice(id) { const menu = getMenu(); const idx = menu.findIndex(i => i.id === id); if (idx < 0) return; const newP = parseInt(document.getElementById('pi-' + id).value) || 0; menu[idx].prevPrice = menu[idx].price; menu[idx].price = newP; saveMenu(menu); renderMenu(); buildSite(); showToast('✅ Price updated to ₹' + newP); }
+    function delItem(id) { if (!confirm('Delete this item?')) return; saveMenu(getMenu().filter(i => i.id !== id)); renderMenu(); buildSite(); showToast('🗑️ Item removed'); }
+    function doAddItem() {
+      const name = document.getElementById('ni-name').value.trim();
+      const price = parseInt(document.getElementById('ni-price').value) || 0;
+      const cat = document.getElementById('ni-cat').value;
+      const ico = document.getElementById('ni-ico').value.trim() || '🍽️';
+      const note = document.getElementById('ni-note').value.trim();
+      if (!name) { showToast('⚠️ Enter item name'); return; }
+      const menu = getMenu();
+      menu.push({ id: 'x' + Date.now(), name, price, prevPrice: price, cat, ico, desc: note || '', avail: true, note });
+      saveMenu(menu); renderMenu(); buildSite();
+      document.getElementById('add-item-form').style.display = 'none';
+      ['ni-name', 'ni-price', 'ni-ico', 'ni-note'].forEach(k => document.getElementById(k).value = '');
+      showToast('✅ ' + name + ' added!');
+    }
+
+    // OFFERS
+    function renderOffers() {
+      const offers = getOffers();
+      document.getElementById('offers-list').innerHTML = offers.map((o, i) => `<div class="offer-mgr"><h4>${o.ico} ${o.name} <span style="background:${o.active ? '#E8F5E9' : '#FFEBEE'};color:${o.active ? 'var(--G)' : 'var(--R)'};padding:2px 7px;border-radius:6px;font-size:.56rem;">${o.active ? 'Active' : 'Off'}</span></h4><div class="of"><label>Offer Name</label><input id="oi-n-${i}" value="${o.name}"></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px"><div class="of"><label>New ₹</label><input type="number" id="oi-np-${i}" value="${o.newP}"></div><div class="of"><label>Old ₹</label><input type="number" id="oi-op-${i}" value="${o.oldP}"></div><div class="of"><label>Save ₹</label><input type="number" id="oi-sv-${i}" value="${o.save}"></div></div><div class="sw-row"><div class="sw ${o.active ? 'on' : ''}" onclick="toggleOffer(${i})"></div><span class="sw-lbl">${o.active ? 'Active' : 'Off'}</span><button style="margin-left:auto;padding:6px 12px;background:var(--S);color:#fff;border:none;border-radius:8px;font-size:.65rem;font-weight:900;cursor:pointer;" onclick="saveOffer(${i})">💾 Save</button><button style="padding:6px 9px;background:#FFEBEE;color:var(--R);border:none;border-radius:8px;font-size:.65rem;font-weight:900;cursor:pointer;margin-left:4px;" onclick="delOffer(${i})">🗑️</button></div></div>`).join('');
+    }
+    function saveOffer(i) { const o = getOffers(); o[i].name = document.getElementById('oi-n-' + i).value; o[i].newP = parseInt(document.getElementById('oi-np-' + i).value) || 0; o[i].oldP = parseInt(document.getElementById('oi-op-' + i).value) || 0; o[i].save = parseInt(document.getElementById('oi-sv-' + i).value) || 0; saveOffers(o); renderOffers(); buildSite(); showToast('✅ Offer saved!'); }
+    function toggleOffer(i) { const o = getOffers(); o[i].active = !o[i].active; saveOffers(o); renderOffers(); buildSite(); showToast(o[i].active ? '🔥 Offer ON!' : 'Offer OFF'); }
+    function delOffer(i) { if (!confirm('Delete offer?')) return; const o = getOffers(); o.splice(i, 1); saveOffers(o); renderOffers(); buildSite(); showToast('🗑️ Deleted'); }
+    function addNewOffer() { const o = getOffers(); o.push({ id: 'o' + Date.now(), name: 'New Offer', desc: '', newP: 100, oldP: 120, save: 20, active: false, ico: '🎁' }); saveOffers(o); renderOffers(); showToast('➕ Added'); }
+
+    // CUSTOMERS
+    function doAddCustomer() {
+      const nm = document.getElementById('nc-name').value.trim();
+      const ph = document.getElementById('nc-phone').value.trim();
+      const ad = document.getElementById('nc-addr').value.trim();
+      if (!nm || !ph) { showToast('⚠️ Name and Mobile required'); return; }
+      const users = getUsers();
+      if (users.find(u => u.phone === ph)) { showToast('⚠️ Mobile already registered'); return; }
+      users.push({ name: nm, phone: ph, addr: ad, pass: '12345' });
+      saveUsers(users); renderCustomers();
+      document.getElementById('add-cust-form').style.display = 'none';
+      ['nc-name', 'nc-phone', 'nc-addr'].forEach(k => document.getElementById(k).value = '');
+      showToast('✅ Customer added!');
+    }
+    function renderCustomers() {
+      const users = getUsers(), cont = document.getElementById('cust-list');
+      if (!users.length) { cont.innerHTML = '<div style="text-align:center;padding:40px;color:#ccc"><div style="font-size:2rem">👥</div>No registered customers yet</div>'; return; }
+      cont.innerHTML = users.map(u => { const oc = orders.filter(o => o.phone === u.phone).length; const sp = orders.filter(o => o.phone === u.phone && o.status === 'delivered').reduce((a, o) => a + (o.amount || 0), 0); return `<div class="ccard"><div class="cav">👤</div><div><div class="cname">${u.name}</div><div class="csub">📱 ${u.phone}</div>${u.addr ? `<div class="csub">📍 ${u.addr}</div>` : ''}</div><div class="cstat"><div class="cnum">${oc}</div><div class="cnlbl">orders</div><div style="font-size:.58rem;color:var(--G);font-weight:800;margin-top:2px">₹${sp} spent</div></div></div>`; }).join('');
+    }
+
+    // REVENUE
+    function renderRevenue() {
+      const t = todayStr(), wa = new Date(); wa.setDate(wa.getDate() - 7);
+      const tok = orders.filter(o => o.date === t && !['cancelled', 'unbilled'].includes(o.status));
+      const wok = orders.filter(o => new Date(o.date) >= wa && !['cancelled', 'unbilled'].includes(o.status));
+      const va = orders.filter(o => !['cancelled', 'unbilled'].includes(o.status));
+      document.getElementById('rv-today').textContent = '₹' + tok.reduce((a, o) => a + (o.amount || 0), 0);
+      document.getElementById('rv-week').textContent = '₹' + wok.reduce((a, o) => a + (o.amount || 0), 0);
+      document.getElementById('rv-total').textContent = va.length;
+      document.getElementById('rv-avg').textContent = '₹' + (va.length ? Math.round(va.reduce((a, o) => a + (o.amount || 0), 0) / va.length) : 0);
+      const days = {}; va.forEach(o => { if (!days[o.date]) days[o.date] = { r: 0, c: 0 }; days[o.date].r += (o.amount || 0); days[o.date].c++; });
+      document.getElementById('rv-breakdown').innerHTML = Object.entries(days).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 7).map(([d, v]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5ede4;font-size:.73rem;font-weight:600;"><span style="color:#999">${fmtDate(d)}</span><span><b style="color:var(--S)">₹${v.r}</b> <span style="color:#bbb">(${v.c} orders)</span></span></div>`).join('') || '<div style="color:#bbb;font-size:.7rem;text-align:center;padding:16px">No data yet</div>';
+    }
+
+    // BUILD CUSTOMER SITE
+    function buildSite() {
+      const menu = getMenu(), offers = getOffers().filter(o => o.active);
+      // marquee
+      document.getElementById('offer-marquee').textContent = offers.length ? offers.map(o => `🎉 ${o.name}: ₹${o.newP} (Save ₹${o.save})`).join('   •   ') : '🎉 Welcome to Attarillu Family Restaurant, Kotturu! Fresh food served daily!';
+      // offer cards
+      document.getElementById('offer-scroll').innerHTML = offers.map(o => `<div class="o-card" onclick="addCart('${o.name.replace(/'/g, "\\'")}',${o.newP})"><div class="o-img" style="background:linear-gradient(135deg,var(--BR2),var(--S))">${o.ico}</div><div class="o-body"><div class="o-name">${o.name}</div><div class="o-desc">${o.desc}</div><div class="o-price-row"><span class="o-new">₹${o.newP}</span><span class="o-old">₹${o.oldP}</span><span class="o-save">SAVE ₹${o.save}</span></div></div></div>`).join('');
+      // offers section visibility
+      document.getElementById('offers-sec').style.display = offers.length ? 'flex' : 'none';
+      // menu grids
+      const tabMap = { 'Tiffins': 'tiffin', 'Biryani': 'biryani', 'Starters': 'starters', 'Fast Food': 'fastfood' };
+      Object.entries(tabMap).forEach(([cat, tab]) => {
+        const items = menu.filter(i => i.cat === cat);
+        document.getElementById('grid-' + tab).innerHTML = items.map(item => {
+          const bg = item.bg || 'linear-gradient(135deg,var(--S),var(--S2))';
+          const nameEsc = item.name.replace(/'/g, "\\'");
+          return `<div class="mc">${item.offer ? `<span class="mc-badge">${item.offerLabel}</span>` : ''}<div class="mc-img" style="background:${bg}">${item.ico}</div><div class="mc-body"><div class="mc-name">${item.name}</div><div class="mc-price">₹${item.price}${item.note ? `<span class="sub">${item.note}</span>` : ''}</div><div class="mc-desc">${item.desc || ''}</div></div>${item.avail ? `<button class="add-btn" onclick="addCart('${nameEsc}',${item.price})">+</button>` : '<div class="mc-na">NOT AVAILABLE</div>'}</div>`;
+        }).join('');
+      });
+    }
+
+    // CART
+    function addCart(name, price) { cart.push({ name, price: parseInt(price) || 0 }); document.getElementById('ccnt').textContent = cart.length; showToast('🛒 ' + name + ' added!'); updateCartUI(); }
+    function updateCartUI() {
+      const box = document.getElementById('cart-box');
+      if (!cart.length) { box.style.display = 'none'; return; }
+      box.style.display = 'block';
+      const counts = {}; cart.forEach(i => { if (!counts[i.name]) counts[i.name] = { q: 0, p: i.price }; counts[i.name].q++; });
+      document.getElementById('cart-items').innerHTML = Object.entries(counts).map(([k, v]) => `<div class="cart-row"><span>${k} ×${v.q}</span><span>₹${v.p * v.q}</span></div>`).join('');
+      document.getElementById('cart-total').textContent = '₹' + cart.reduce((a, i) => a + i.price, 0);
+    }
+    function scrollBook() { document.getElementById('booking').scrollIntoView({ behavior: 'smooth' }); }
+
+    // ORDER TYPE / PAYMENT
+    function setOT(t) { orderType = t;['delivery', 'dine', 'pickup'].forEach(k => document.getElementById('tog-' + k).classList.remove('on')); document.getElementById('tog-' + t).classList.add('on'); document.getElementById('addr-wrap').style.display = t === 'delivery' ? 'block' : 'none'; }
+    function setPay(m) { payMethod = m;['cash', 'upi', 'wa', 'card'].forEach(k => document.getElementById('po-' + k).classList.remove('on')); document.getElementById('po-' + m).classList.add('on'); document.getElementById('upi-box').style.display = m === 'upi' ? 'block' : 'none'; }
+
+    // AUTH
+    function openAuth() { if (currentUser) showUserMenu(); else openOv('auth-ov'); }
+    function swAuth(t, el) { document.querySelectorAll('.atab').forEach(a => a.classList.remove('on')); document.querySelectorAll('.apanel').forEach(a => a.classList.remove('on')); el.classList.add('on'); document.getElementById('ap-' + t).classList.add('on'); }
+    function doSignIn() { const ph = document.getElementById('si-ph').value.trim(), pw = document.getElementById('si-pw').value, users = getUsers(), u = users.find(x => x.phone === ph && x.pass === pw); if (!u) { document.getElementById('si-err').textContent = '⚠️ Wrong mobile or password'; return; } currentUser = { name: u.name, phone: u.phone, addr: u.addr }; localStorage.setItem(CSK, JSON.stringify(currentUser)); updateChip(); prefill(); closeOv('auth-ov'); showToast('👋 Welcome back, ' + u.name + '!'); }
+    function doSignUp() { const nm = document.getElementById('su-nm').value.trim(), ph = document.getElementById('su-ph').value.trim(), ad = document.getElementById('su-ad').value.trim(), pw = document.getElementById('su-pw').value; if (!nm || !ph || !pw) { document.getElementById('su-err').textContent = '⚠️ Fill all fields'; return; } const users = getUsers(); if (users.find(u => u.phone === ph)) { document.getElementById('su-err').textContent = '⚠️ Mobile already registered'; return; } users.push({ name: nm, phone: ph, addr: ad, pass: pw }); saveUsers(users); currentUser = { name: nm, phone: ph, addr: ad }; localStorage.setItem(CSK, JSON.stringify(currentUser)); updateChip(); prefill(); closeOv('auth-ov'); showToast('🎉 Welcome, ' + nm + '!'); }
+    function updateChip() { if (!currentUser) return; document.getElementById('user-chip').textContent = '👤 ' + currentUser.name.split(' ')[0]; const n = document.getElementById('login-notice'); if (n) n.style.display = 'none'; }
+    function showUserMenu() { if (confirm('Logged in as: ' + currentUser.name + '\n\nSign Out?')) { currentUser = null; localStorage.removeItem(CSK); document.getElementById('user-chip').textContent = '👤 Sign In'; const n = document.getElementById('login-notice'); if (n) n.style.display = 'block'; showToast('👋 Signed out'); } }
+    function prefill() { if (!currentUser) return; document.getElementById('c-name').value = currentUser.name || ''; document.getElementById('c-phone').value = currentUser.phone || ''; if (currentUser.addr) document.getElementById('c-addr').value = currentUser.addr; }
+
+    // SUBMIT ORDER
+    function submitOrder() {
+      const name = document.getElementById('c-name').value.trim(), phone = document.getElementById('c-phone').value.trim(), date = document.getElementById('c-date').value, time = document.getElementById('c-time').value, sec = document.getElementById('c-sec').value;
+      if (!name || !phone || !date || !time || !sec) { showToast('⚠️ Please fill all fields!'); return; }
+      if (orderType === 'delivery' && !document.getElementById('c-addr').value.trim()) { showToast('⚠️ Enter delivery address!'); return; }
+      if (payMethod === 'whatsapp') { bookWA(); return; }
+      const counts = {}; cart.forEach(i => { if (!counts[i.name]) counts[i.name] = { q: 0, p: i.price }; counts[i.name].q++; });
+      const items = Object.entries(counts).map(([k, v]) => `${k} ×${v.q}`);
+      const total = cart.reduce((a, i) => a + i.price, 0);
+      const id = 'ORD' + String(Date.now()).slice(-6);
+      orders.push({ id, name, phone, date, time, section: sec, type: orderType, items: items.length ? items : ['Order placed'], address: orderType === 'delivery' ? document.getElementById('c-addr').value.trim() : '', notes: document.getElementById('c-notes').value.trim(), status: 'new', amount: total, payMethod, ts: Date.now() });
+      saveOrders();
+      showToast('🎉 Order #' + id + ' Confirmed!');
+      setTimeout(() => { cart = []; document.getElementById('ccnt').textContent = '0'; document.getElementById('cart-box').style.display = 'none'; document.getElementById('c-notes').value = ''; document.getElementById('c-sec').value = ''; if (!currentUser) { document.getElementById('c-name').value = ''; document.getElementById('c-phone').value = ''; } }, 1500);
+    }
+    function bookWA() {
+      const name = document.getElementById('c-name').value.trim() || 'Customer';
+      const sec = document.getElementById('c-sec').value || 'Not selected';
+      const counts = {}; cart.forEach(i => { if (!counts[i.name]) counts[i.name] = { q: 0, p: i.price }; counts[i.name].q++; });
+      const items = Object.entries(counts).length ? Object.entries(counts).map(([k, v]) => `${k} ×${v.q} = ₹${v.p * v.q}`).join('\n') : '(Specify items)';
+      const total = cart.reduce((a, i) => a + i.price, 0);
+      const msg = `🍽️ *Order - Attarillu Family Restaurant*\n\n👤 ${name}\n📱 ${document.getElementById('c-phone').value || '—'}\n🕐 ${document.getElementById('c-date').value} at ${document.getElementById('c-time').value}\n🍴 ${sec}\n${orderType === 'delivery' ? '🚚 Home Delivery\n📍 ' + (document.getElementById('c-addr').value.trim() || '—') : '🍽️ Dine In'}\n\n*Items:*\n${items}\n\n💰 Total: ₹${total}${document.getElementById('c-notes').value.trim() ? '\n\n📝 ' + document.getElementById('c-notes').value.trim() : ''}`;
+      window.open('https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    // MENU TABS (site)
+    function showTab(t, el) { document.querySelectorAll('.mpanel').forEach(p => p.classList.remove('on')); document.querySelectorAll('.mtab').forEach(b => b.classList.remove('on')); document.getElementById('mp-' + t).classList.add('on'); el.classList.add('on'); }
+
+    // HELPERS
+    function refreshAll() { const ico = document.getElementById('spico'); ico.classList.add('spinning'); const r = getOrders(); if (r) orders = r; renderOrders(); renderUnbilled(); updateStats(); renderRevenue(); renderCustomers(); setTimeout(() => ico.classList.remove('spinning'), 600); showToast('🔄 Refreshed!'); }
+    function stLabel(s) { return { new: '🆕 New', preparing: '🍳 Preparing', ready: '✅ Ready', 'out-for-delivery': '🚚 On Way', delivered: '🎉 Delivered', cancelled: '❌ Cancelled', unbilled: '💜 Unbilled' }[s] || s; }
+    function fmtDate(d) { if (!d) return '—'; if (d === todayStr()) return 'Today'; return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
+    function timeAgo(ts) { if (!ts) return ''; const d = Math.floor((Date.now() - ts) / 1000); if (d < 60) return 'just now'; if (d < 3600) return Math.floor(d / 60) + 'm ago'; if (d < 86400) return Math.floor(d / 3600) + 'h ago'; return Math.floor(d / 86400) + 'd ago'; }
+    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2400); }
+    function showNotify(msg) { const n = document.getElementById('notify'); document.getElementById('notifmsg').textContent = msg; n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 6000); }
+    function playBeep() { try { const c = new (window.AudioContext || window.webkitAudioContext)();[0, 150, 300].forEach(d => { const o = c.createOscillator(), g = c.createGain(); o.connect(g); g.connect(c.destination); o.frequency.value = 880; g.gain.setValueAtTime(.3, c.currentTime + d / 1000); g.gain.exponentialRampToValueAtTime(.001, c.currentTime + d / 1000 + .3); o.start(c.currentTime + d / 1000); o.stop(c.currentTime + d / 1000 + .3); }); } catch (e) { } }
+    window.addEventListener('storage', e => { if (e.key === SK) { const r = getOrders(); if (r) { const prev = orders.length; orders = r; if (orders.length > prev) { showNotify('🔔 New order!'); playBeep(); } renderOrders(); renderUnbilled(); updateStats(); renderRevenue(); } } });
+  </script>
+</body>
+
+</html>
